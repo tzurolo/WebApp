@@ -1,2 +1,2 @@
 # WebApp
-Exercises from Hans tutorial for creating web apps
+Exercises from Hans' workshop for creating web apps
