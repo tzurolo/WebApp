@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script type="text/javascript">
+if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = getVoices;
+} else {
+    console.log('no speak');
+}
+
+var voices;
+function getVoices () 
+{
+voices = window.speechSynthesis.getVoices();
+console.log('loading voice selector');
+for(i = 0; i < voices.length ; ++i) {
+    var option = document.createElement('option');
+    option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
+    
+    if(voices[i].default) {
+      option.textContent += ' -- DEFAULT';
+    }
+
+    option.setAttribute('data-lang', voices[i].lang);
+    option.setAttribute('data-name', voices[i].name);
+    document.getElementById("voiceSelect").appendChild(option);
+}
+window.speechSynthesis.onvoiceschanged = null;
+}
+
+function sayIt ()
+{
+var textInput = document.getElementById('tosay');
+var text = textInput.value;
+var msg = new SpeechSynthesisUtterance(text);
+var selectedVoiceIndex = document.getElementById('voiceSelect').selectedIndex;
+msg.voice = voices[selectedVoiceIndex];
+msg.voiceURI = 'native';
+msg.pitch = 1;
+msg.rate = 1;
+speechSynthesis.speak(msg);
+}
+
+//console.log(Object.getOwnPropertyNames(voices));
+//console.log(voices.length);
+//  for(i = 0; i < voices.length ; i++) {
+//  console.log(voices[i].name + ' (' + voices[i].lang + ')');
+//  }
+</script>
+
+<h2>Text field</h2>
+<p>The <strong>input type="text"</strong> defines a one-line text input field:</p>
+
+<input id="tosay" type="text" value="dude that totally rocks">
+<input type="button" onclick="sayIt()" value="Say it!">
+<select id="voiceSelect"></select>
+</body>
+</html>
