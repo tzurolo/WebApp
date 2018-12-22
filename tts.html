@@ -5,14 +5,16 @@
 if ('speechSynthesis' in window) {
     window.speechSynthesis.onvoiceschanged = getVoices;
 } else {
-    console.log('no speak');
+    var consoleEle = document.getElementById('console1');
+    consoleEle.innerHTML= 'no speak';
 }
 
 var voices;
 function getVoices () 
 {
 voices = window.speechSynthesis.getVoices();
-console.log('loading voice selector');
+var consoleEle = document.getElementById('console2');
+consoleEle.innerHTML= 'loading voice selector';
 for(i = 0; i < voices.length ; ++i) {
     var option = document.createElement('option');
     option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
@@ -54,5 +56,9 @@ speechSynthesis.speak(msg);
 <input id="tosay" type="text" value="dude that totally rocks">
 <input type="button" onclick="sayIt()" value="Say it!">
 <select id="voiceSelect"></select>
+    <p>Console 1</p>
+    <div id=console1></div>
+    <p>Console 2</p>
+    <div id=console2></div>
 </body>
 </html>
