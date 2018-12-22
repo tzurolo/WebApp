@@ -37,10 +37,10 @@ var text = textInput.value;
 var msg = new SpeechSynthesisUtterance(text);
 var selectedVoiceIndex = document.getElementById('voiceSelect').selectedIndex;
 msg.voice = voices[selectedVoiceIndex];
-msg.voiceURI = 'native';
+//msg.voiceURI = 'native';
 //msg.lang = 'en-US';
-msg.pitch = 1;
-msg.rate = 1;
+//msg.pitch = 1;
+//msg.rate = 1;
 speechSynthesis.speak(msg);
 }
 
