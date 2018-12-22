@@ -38,6 +38,7 @@ var msg = new SpeechSynthesisUtterance(text);
 var selectedVoiceIndex = document.getElementById('voiceSelect').selectedIndex;
 //msg.voice = voices[selectedVoiceIndex];
 msg.voiceURI = 'native';
+msg.lang = 'en-UK';
 msg.pitch = 1;
 msg.rate = 1;
 speechSynthesis.speak(msg);
